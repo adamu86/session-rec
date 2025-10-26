@@ -7,7 +7,7 @@ preprocessing method ["info","org","days_test","slice"]
     org_min_date: from gru4rec (last day => test set) but from a minimal date onwards
     days_test: adapted from gru4rec (last N days => test set)
     slice: new (create multiple train-test-combinations with a window approach  
-    buys: load buys and safe file to prepared
+    buys: load buys and safe file to prepared_window
 '''
 import sys
 from pathlib import Path

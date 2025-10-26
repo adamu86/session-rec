@@ -12,7 +12,7 @@ def load_data(path, file, rows_train=None, rows_test=None, slice_num=None, densi
     Parameters
     --------
     path : string
-        Base path to look in for the prepared data files
+        Base path to look in for the prepared_window data files
     file : string
         Prefix of  the dataset you want to use.
         "yoochoose-clicks-full" loads yoochoose-clicks-full_train_full.txt and yoochoose-clicks-full_test.txt
@@ -158,7 +158,7 @@ def load_data_session_hdf(path, file, sessions_train=None, sessions_test=None, s
        Parameters
        --------
        path : string
-           Base path to look in for the prepared data files
+           Base path to look in for the prepared_window data files
        file : string
            Prefix of  the dataset you want to use.
            "yoochoose-clicks-full" loads yoochoose-clicks-full_train_full.txt and yoochoose-clicks-full_test.txt
@@ -221,7 +221,7 @@ def load_data_session(path, file, sessions_train=None, sessions_test=None, slice
     Parameters
     --------
     path : string
-        Base path to look in for the prepared data files
+        Base path to look in for the prepared_window data files
     file : string
         Prefix of  the dataset you want to use.
         "yoochoose-clicks-full" loads yoochoose-clicks-full_train_full.txt and yoochoose-clicks-full_test.txt
@@ -274,7 +274,7 @@ def load_buys(path, file):
     Parameters
     --------
     path : string
-        Base path to look in for the prepared data files
+        Base path to look in for the prepared_window data files
     file : string
         Prefix of  the dataset you want to use.
         "yoochoose-clicks-full" loads yoochoose-clicks-full_train_full.txt and yoochoose-clicks-full_test.txt
@@ -306,7 +306,7 @@ def load_data_session_retrain(path, file, trian_set, test_num, sessions_train=No
     Parameters
     --------
     path : string
-        Base path to look in for the prepared data files
+        Base path to look in for the prepared_window data files
     file : string
         Prefix of  the dataset you want to use.
         "yoochoose-clicks-full" loads yoochoose-clicks-full_train_full.txt and yoochoose-clicks-full_test.txt
@@ -406,7 +406,7 @@ def load_data_userbased(path, file, rows_train=None, rows_test=None, slice_num=N
     Parameters
     --------
     path : string
-        Base path to look in for the prepared data files
+        Base path to look in for the prepared_window data files
     file : string
         Prefix of  the dataset you want to use.
         "yoochoose-clicks-full" loads yoochoose-clicks-full_train_full.txt and yoochoose-clicks-full_test.txt
@@ -575,7 +575,7 @@ def count_repetitions(path, file, rows_train=None, rows_test=None, slice_num=Non
     Parameters
     --------
     path : string
-        Base path to look in for the prepared data files
+        Base path to look in for the prepared_window data files
     file : string
         Prefix of  the dataset you want to use.
         "yoochoose-clicks-full" loads yoochoose-clicks-full_train_full.txt and yoochoose-clicks-full_test.txt
