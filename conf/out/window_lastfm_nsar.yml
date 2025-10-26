@@ -1,39 +1,31 @@
-type: window # opt|single|window
+type: opt # single|window, maybe add opt
 key: nsar #added to the csv names
-evaluation: evaluation_user_based #evaluation|evaluation_last|evaluation_multiple|evaluation_user_based|evaluation_user_based_multiple
+evaluation: evaluation_user_based #evaluation|evaluation_last|evaluation_multiple
 data:
   name: lastfm #added in the end of the csv names
   folder: data/lastfm/prepared/window/
-  prefix: userid-timestamp-artid-artname-traid-traname
+  prefix: userid-timestamp-artid-artname-traid-traname.2
   type: hdf #hdf (if there is no type, the default is csv)
-  slices: 5
 
 results:
-  folder: results/window/lastfm/nsar
+  folder: results/opt/window/lastfm/nsar/
 
 metrics:
 - class: accuracy_multiple.Precision
-  length: [5,10,20]
+  length: [5,10,15,20]
 - class: accuracy_multiple.Recall
-  length: [5,10,20]
+  length: [5,10,15,20]
 - class: accuracy_multiple.MAP
-  length: [5,10,20]
-- class: accuracy_multiple.NDCG
-  length: [5,10,20]
+  length: [5,10,15,20]
 - class: accuracy.HitRate
-  length: [5,10,20]
+  length: [5,10,15,20]
 - class: accuracy.MRR
-  length: [5,10,20]
-- class: coverage.Coverage
-  length: [20]
-- class: popularity.Popularity
-  length: [20]
-- class: time_memory_usage.Time_usage_training
-- class: time_memory_usage.Time_usage_testing
-#- class: time_memory_usage.Memory_usage
+  length: [5,10,15,20]
 
 algorithms:
-# nsar-num_epoch=20-batch_size=64-keep_pr=0.25-learning_rate=0.003-hidden_units=100
 - class: nsar.nsar.NSAR # small network, the TOP1 loss always outperformed other ranking losses, so we consider only it
-  params: {num_epoch: 1, batch_size: 64, keep_pr: 0.25, learning_rate: 0.05, hidden_units: 100}
+  params: {num_epoch: 1, batch_size: 64, keep_pr: 0.25}
+  params_opt:
+    learning_rate: [ {from: 0.01, to: 0.001, in: 10, type: float32}, {from: 0.05, to: 0.01, in: 5, type: float32} ] # todo for their model as well?!!
+    hidden_units: [50,100]
   key: nsar
