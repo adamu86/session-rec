@@ -7,7 +7,7 @@ from theano.tensor import inplace
 
 #data config (all methods)
 DATA_PATH = '../data/playlist/raw/'
-DATA_PATH_PROCESSED = '../data/playlist/prepared/'
+DATA_PATH_PROCESSED = '../data/playlist/prepared_window/'
 #DATA_FILE = 'yoochoose-clicks-10M'
 DATA_FILE = 'music1000-0'
 

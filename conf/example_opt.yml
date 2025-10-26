@@ -3,7 +3,7 @@ key: baselines_and_models #added to the csv names
 evaluation: evaluation #evaluation|evaluation_last|evaluation_multiple
 data:
   name: rsc15-100k #added in the end of the csv names
-  folder: data/rsc15/prepared/
+  folder: data/rsc15/prepared_window/
   prefix: yoochoose-clicks-100k
   opts: {sessions_test: 100}
 

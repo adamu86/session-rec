@@ -196,7 +196,7 @@ def split_data(data, output_file, min_session_length, slice_id= None): #TODO: ex
     if slice_id is not None:
         output_file = output_file +"."+ str(slice_id)
     output_file = output_file + FILE_TYPE_PREFIX
-    subprocess.call(['mkdir', '-p', 'prepared'])
+    subprocess.call(['mkdir', '-p', 'prepared_window'])
     train_full_sessions.to_hdf(output_file, 'train')
     test_sessions.to_hdf(output_file, 'test')
     train_valid_sessions.to_hdf(output_file, 'valid_train')

@@ -15,4 +15,4 @@ params:
   min_session_length: 2 #3
 
 output:
-  folder: data/lastfm/prepared/
+  folder: data/lastfm/prepared_window/

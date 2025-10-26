@@ -3,7 +3,7 @@ key: baselines_and_models #added to the csv names
 evaluation: evaluation_user_based # evaluation_user_based
 data:
   name: retailrocket #added in the end of the csv names
-  folder: data/retailrocket/prepared/
+  folder: data/retailrocket/prepared_window/
   prefix: events_sample
   type: hdf # hdf|csv(default)
 

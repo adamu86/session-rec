@@ -3,7 +3,7 @@ key: hgru4rec #added to the csv names
 evaluation: evaluation_user_based #evaluation|evaluation_last|evaluation_multiple|evaluation_next_multiple|evaluation_user_based_next|evaluation_user_based_multiple
 data:
   name: lastfm #added in the end of the csv names
-  folder: data/lastfm/prepared/window/
+  folder: data/lastfm/prepared_window/window/
   prefix: userid-timestamp-artid-artname-traid-traname
   type: hdf #hdf (if there is no type, the default is csv)
   slices: 5
