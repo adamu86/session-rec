@@ -5,7 +5,7 @@ evaluation: evaluation_user_based #evaluation|evaluation_last|evaluation_multipl
 data:
   name: lastfm #added in the end of the csv names
   folder: data/lastfm/prepared_window/
-  prefix: userid-timestamp-artid-artname-traid-traname_sample
+  prefix: userid-timestamp-artid-artname-traid-traname.3
   type: hdf #hdf (if there is no type, the default is csv)
 
 results:
