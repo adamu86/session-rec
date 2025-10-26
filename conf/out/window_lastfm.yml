@@ -35,3 +35,22 @@ algorithms:
     user_propagation_mode: ['init', 'all']
     batch_size: [50, 100]
   key: hgru4rec
+- class: NCFS.ncfs.NCFS
+  params: {} # mini_batch_sz # neg_samples # max_epoch # max_session_len # embeding_len
+  params_opt:
+    window_sz: {from: 1, to: 10, in: 10, type: int32}
+    max_nb_his_sess: [0,1,2,5,10]
+    att_alpha: [0.01, 0.1, 1, 10]
+  key: ncfs
+- class: nsar.nsar.NSAR # small network, the TOP1 loss always outperformed other ranking losses, so we consider only it
+  params: {num_epoch: 1, batch_size: 64, keep_pr: 0.25}
+  params_opt:
+    learning_rate: [ {from: 0.01, to: 0.001, in: 10, type: float32}, {from: 0.05, to: 0.01, in: 5, type: float32} ] # todo for their model as well?!!
+    hidden_units: [50,100]
+  key: nsar
+- class: shan.shan.SHAN # small network, the TOP1 loss always outperformed other ranking losses, so we consider only it
+  params: {iter: 1, global_dimension: 100}
+  params_opt:
+    lambda_uv: [{from: 0.0001, to: 0.001, in: 10, type: float32}, {from: 0.001, to: 0.01, in: 10, type: float32}]  # [0.01, 0.001, 0.0001]
+    lambda_a:  [1,10,50] # [1, 10, 50]
+  key: shan
