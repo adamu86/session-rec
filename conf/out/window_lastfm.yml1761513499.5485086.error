@@ -1,0 +1,56 @@
+type: opt # single|window, maybe add opt
+key: hgru4rec #added to the csv names
+evaluation: evaluation_user_based #evaluation|evaluation_last|evaluation_multiple
+data:
+  name: lastfm #added in the end of the csv names
+  folder: data/lastfm/prepared/window/
+  prefix: userid-timestamp-artid-artname-traid-traname.0
+  type: hdf #hdf (if there is no type, the default is csv)
+
+results:
+  folder: results/opt/window/lastfm/hgru4rec/
+
+metrics:
+- class: accuracy_multiple.Precision
+  length: [5,10,15,20]
+- class: accuracy_multiple.Recall
+  length: [5,10,15,20]
+- class: accuracy_multiple.MAP
+  length: [5,10,15,20]
+- class: accuracy.HitRate
+  length: [5,10,15,20]
+- class: accuracy.MRR
+  length: [5,10,15,20]
+
+algorithms:
+#- class: hgru4rec.hgru4rec.HGRU4Rec
+#  params: {session_layers: 100, user_layers: 100, loss: 'top1'} # small network, the TOP1 loss always outperformed other ranking losses, so we consider only it
+#  params_opt:
+#    final_act: ['linear', 'relu', 'tanh'] # None means default (tanh if the loss is brp or top1; softmax for cross-entropy) # cross-entropy is only affected by 'tanh' where the softmax layers is proceeded by a tanh nonlinearity (default: None)
+#    dropout_p_hidden_usr: {from: 0.0, to: 0.9, in: 10, type: float}
+#    dropout_p_hidden_ses: {from: 0.0, to: 0.9, in: 10, type: float}
+#    dropout_p_init: {from: 0.0, to: 0.9, in: 10, type: float}
+#    momentum: {from: 0.0, to: 0.9, in: 10, type: float32}
+#    learning_rate: [ {from: 0.1, to: 0.01, in: 10, type: float32}, {from: 0.5, to: 0.1, in: 5, type: float32} ]
+#    user_propagation_mode: ['init', 'all']
+#    batch_size: [50, 100]
+#  key: hgru4rec
+- class: NCFS.ncfs.NCFS
+  params: {} # mini_batch_sz # neg_samples # max_epoch # max_session_len # embeding_len
+  params_opt:
+    window_sz: {from: 1, to: 10, in: 10, type: int32}
+    max_nb_his_sess: [0,1,2,5,10]
+    att_alpha: [0.01, 0.1, 1, 10]
+  key: ncfs
+- class: nsar.nsar.NSAR # small network, the TOP1 loss always outperformed other ranking losses, so we consider only it
+  params: {num_epoch: 1, batch_size: 64, keep_pr: 0.25}
+  params_opt:
+    learning_rate: [ {from: 0.01, to: 0.001, in: 10, type: float32}, {from: 0.05, to: 0.01, in: 5, type: float32} ] # todo for their model as well?!!
+    hidden_units: [50,100]
+  key: nsar
+- class: shan.shan.SHAN # small network, the TOP1 loss always outperformed other ranking losses, so we consider only it
+  params: {iter: 1, global_dimension: 100}
+  params_opt:
+    lambda_uv: [{from: 0.0001, to: 0.001, in: 10, type: float32}, {from: 0.001, to: 0.01, in: 10, type: float32}]  # [0.01, 0.001, 0.0001]
+    lambda_a:  [1,10,50] # [1, 10, 50]
+  key: shan
